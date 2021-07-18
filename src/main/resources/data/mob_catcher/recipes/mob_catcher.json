@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        " A ",
+        "ABA",
+        " A "
+    ],
+    
+    "key":
+    {
+        "A":
+        {
+            "item": "minecraft:diamond"
+        },
+        "B":
+        {
+            "item": "minecraft:lead"
+        }
+    },
+    
+    "result":
+    {
+        "item": "mob_catcher:mob_catcher",
+        "count": 1
+    }
+}

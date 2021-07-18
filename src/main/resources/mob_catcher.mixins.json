@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.kwpugh.mob_catcher.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "AbstractDonkeyEntityMixinInteract",
+    "VillagerEntityMixinInteract",
+    "WanderingTraderEntityMixinInteract",
+    "WolfEntityMixinInteract",
+    "ParrotEntityMixinInteract"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
