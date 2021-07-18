@@ -1,13 +1,10 @@
 package com.kwpugh.mob_catcher;
 
 import java.util.List;
-import java.util.Optional;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
@@ -19,15 +16,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /*
@@ -55,7 +49,7 @@ public class ItemMobCatcher extends Item
             if((enableHostileUse) && (stack.getOrCreateTag().isEmpty()) &&
                     (entity instanceof HostileEntity) && !(entity instanceof WitherEntity))
             {
-                if(saveEntityToStack(entity, stack, player))
+                if(CatcherUtil.saveEntityToStack(entity, stack))
                 {
                     player.setStackInHand(hand, stack);
                 }
@@ -69,7 +63,7 @@ public class ItemMobCatcher extends Item
                             entity instanceof VillagerEntity) ||
                     entity instanceof WanderingTraderEntity)
             {
-                if(saveEntityToStack(entity, stack, player))
+                if(CatcherUtil.saveEntityToStack(entity, stack))
                 {
                     player.setStackInHand(hand, stack);
                 }
@@ -89,47 +83,12 @@ public class ItemMobCatcher extends Item
         if(!(context.getWorld() instanceof ServerWorld)) return ActionResult.SUCCESS;
         if(!context.getWorld().isClient && stack.hasTag() && stack.getTag().contains("captured_entity"))
         {
-            ServerWorld serverWorld = (ServerWorld) context.getWorld();
-            BlockPos pos = context.getBlockPos().offset(context.getSide());
-            ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
-
-            NbtCompound entityTag = context.getStack().getSubTag("captured_entity");   // KEEP
-
-            Optional<Entity> entity = EntityType.getEntityFromNbt(entityTag, serverWorld);
-
-            if(entity.isPresent())
-            {
-                Entity entity2 = entity.get();
-                entity2.updatePositionAndAngles(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, player.getYaw(), player.getPitch());
-                serverWorld.spawnEntity(entity2);
-            }
-
-            stack.removeSubTag("name");  //KEEP
-            stack.removeSubTag("captured_entity");  // KEEP
-
-            context.getPlayer().getStackInHand(context.getHand());
+            CatcherUtil.respawnEntity(context, stack);
 
             return ActionResult.SUCCESS;
         }
 
         return ActionResult.SUCCESS;
-    }
-
-    // Method to save an entity to a tag and remove entity from world
-    public boolean saveEntityToStack(Entity entity, ItemStack stack, PlayerEntity player)
-    {
-        NbtCompound entityTag = new NbtCompound();
-
-        if(!entity.saveSelfNbt(entityTag))
-        {
-            return false;
-        }
-
-        stack.getOrCreateTag().put("captured_entity", entityTag);
-        stack.getOrCreateTag().putString("name", entity.getDisplayName().getString());
-        entity.discard();
-
-        return true;
     }
 
     // Have glint if it contains a mob
