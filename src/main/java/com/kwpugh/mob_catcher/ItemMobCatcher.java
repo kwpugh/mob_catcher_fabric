@@ -8,10 +8,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.GolemEntity;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.entity.passive.WanderingTraderEntity;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -60,6 +57,8 @@ public class ItemMobCatcher extends Item
             if((stack.getOrCreateTag().isEmpty()) &&
                     (entity instanceof AnimalEntity ||
                             entity instanceof GolemEntity ||
+                            entity instanceof SquidEntity ||
+                            entity instanceof FishEntity ||
                             entity instanceof VillagerEntity) ||
                     entity instanceof WanderingTraderEntity)
             {
