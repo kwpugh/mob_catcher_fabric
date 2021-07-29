@@ -43,7 +43,7 @@ public class ItemMobCatcher extends Item
     {
         if(!player.world.isClient)
         {
-            if((enableHostileUse) && (stack.getOrCreateTag().isEmpty()) &&
+            if((enableHostileUse) && (stack.getOrCreateNbt().isEmpty()) &&
                     (entity instanceof HostileEntity) && !(entity instanceof WitherEntity))
             {
                 if(CatcherUtil.saveEntityToStack(entity, stack))
@@ -54,7 +54,7 @@ public class ItemMobCatcher extends Item
                 return ActionResult.SUCCESS;
             }
 
-            if((stack.getOrCreateTag().isEmpty()) &&
+            if((stack.getOrCreateNbt().isEmpty()) &&
                     (entity instanceof AnimalEntity ||
                             entity instanceof GolemEntity ||
                             entity instanceof SquidEntity ||
@@ -80,7 +80,7 @@ public class ItemMobCatcher extends Item
     {
         ItemStack stack = context.getStack();
         if(!(context.getWorld() instanceof ServerWorld)) return ActionResult.SUCCESS;
-        if(!context.getWorld().isClient && stack.hasTag() && stack.getTag().contains("captured_entity"))
+        if(!context.getWorld().isClient && stack.hasNbt() && stack.getNbt().contains("captured_entity"))
         {
             CatcherUtil.respawnEntity(context, stack);
 
@@ -94,7 +94,7 @@ public class ItemMobCatcher extends Item
     @Override
     public boolean hasGlint(ItemStack stack)
     {
-        return stack.hasTag() && !stack.getOrCreateSubTag("captured_entity").isEmpty();
+        return stack.hasNbt() && !stack.getOrCreateSubNbt("captured_entity").isEmpty();
     }
 
     @Environment(EnvType.CLIENT)
@@ -102,9 +102,9 @@ public class ItemMobCatcher extends Item
     {
         tooltip.add(new TranslatableText("item.mob_catcher.mob_catcher.tip1").formatted(Formatting.GREEN));
 
-        if (stack.hasTag() && !stack.getOrCreateSubTag("captured_entity").isEmpty())
+        if (stack.hasNbt() && !stack.getOrCreateSubNbt("captured_entity").isEmpty())
         {
-            tooltip.add((new TranslatableText("item.mob_catcher.mob_catcher.tip3", stack.getTag().getString("name")).formatted(Formatting.YELLOW)));
+            tooltip.add((new TranslatableText("item.mob_catcher.mob_catcher.tip3", stack.getNbt().getString("name")).formatted(Formatting.YELLOW)));
         }
     }
 }

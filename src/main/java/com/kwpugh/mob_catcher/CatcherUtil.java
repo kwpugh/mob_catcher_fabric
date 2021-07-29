@@ -19,7 +19,7 @@ public class CatcherUtil
         BlockPos pos = context.getBlockPos().offset(context.getSide());
         ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
 
-        NbtCompound entityTag = context.getStack().getSubTag("captured_entity");   // KEEP
+        NbtCompound entityTag = context.getStack().getSubNbt("captured_entity");   // KEEP
 
         Optional<Entity> entity = EntityType.getEntityFromNbt(entityTag, serverWorld);
 
@@ -30,8 +30,8 @@ public class CatcherUtil
             serverWorld.spawnEntity(entity2);
         }
 
-        stack.removeSubTag("name");  //KEEP
-        stack.removeSubTag("captured_entity");  // KEEP
+        stack.removeSubNbt("name");  //KEEP
+        stack.removeSubNbt("captured_entity");  // KEEP
 
         context.getPlayer().getStackInHand(context.getHand());
     }
@@ -46,8 +46,8 @@ public class CatcherUtil
             return false;
         }
 
-        stack.getOrCreateTag().put("captured_entity", entityTag);
-        stack.getOrCreateTag().putString("name", entity.getDisplayName().getString());
+        stack.getOrCreateNbt().put("captured_entity", entityTag);
+        stack.getOrCreateNbt().putString("name", entity.getDisplayName().getString());
         entity.discard();
 
         return true;

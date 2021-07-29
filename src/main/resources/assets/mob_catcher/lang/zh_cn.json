@@ -1,0 +1,11 @@
+{
+	"item.mob_catcher.mob_catcher": "生物套索",
+	"item.mob_catcher.mob_catcher.tip1": "捕获并存储被动生物及村民",
+	"item.mob_catcher.mob_catcher.tip2": "当前为空",
+	"item.mob_catcher.mob_catcher.tip3": "已捕捉: %s",
+
+	"item.mob_catcher.mob_catcher_hostile": "怪物套索",
+	"item.mob_catcher.mob_catcher_hostile.tip1": "捕获并存储敌对的生物",
+
+	"itemGroup.mob_catcher": "生物套索"
+}

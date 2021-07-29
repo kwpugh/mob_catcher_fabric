@@ -36,7 +36,7 @@ public class ItemMobCatcherHostile extends Item
     {
         if(!player.world.isClient)
         {
-            if(stack.getOrCreateTag().isEmpty() && (entity instanceof HostileEntity && !(entity instanceof WitherEntity)))
+            if(stack.getOrCreateNbt().isEmpty() && (entity instanceof HostileEntity && !(entity instanceof WitherEntity)))
             {
                 if(CatcherUtil.saveEntityToStack(entity, stack))
                 {
@@ -56,7 +56,7 @@ public class ItemMobCatcherHostile extends Item
     {
         ItemStack stack = context.getStack();
         if(!(context.getWorld() instanceof ServerWorld)) return ActionResult.SUCCESS;
-        if(!context.getWorld().isClient && stack.hasTag() && stack.getTag().contains("captured_entity"))
+        if(!context.getWorld().isClient && stack.hasNbt() && stack.getNbt().contains("captured_entity"))
         {
             CatcherUtil.respawnEntity(context, stack);
 
@@ -70,7 +70,7 @@ public class ItemMobCatcherHostile extends Item
     @Override
     public boolean hasGlint(ItemStack stack)
     {
-        return stack.hasTag() && !stack.getOrCreateSubTag("captured_entity").isEmpty();
+        return stack.hasNbt() && !stack.getOrCreateSubNbt("captured_entity").isEmpty();
     }
 
     @Environment(EnvType.CLIENT)
@@ -78,9 +78,9 @@ public class ItemMobCatcherHostile extends Item
     {
         tooltip.add(new TranslatableText("item.mob_catcher.mob_catcher_hostile.tip1").formatted(Formatting.GREEN));
 
-        if (stack.hasTag() && !stack.getOrCreateSubTag("captured_entity").isEmpty())
+        if (stack.hasNbt() && !stack.getOrCreateSubNbt("captured_entity").isEmpty())
         {
-            tooltip.add((new TranslatableText("item.mob_catcher.mob_catcher.tip3", stack.getTag().getString("name")).formatted(Formatting.YELLOW)));
+            tooltip.add((new TranslatableText("item.mob_catcher.mob_catcher.tip3", stack.getNbt().getString("name")).formatted(Formatting.YELLOW)));
         }
     }
 }
