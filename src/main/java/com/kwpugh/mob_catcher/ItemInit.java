@@ -9,8 +9,8 @@ public class ItemInit
 {
     static boolean enableHostile = MobCatcher.CONFIG.SETTINGS.enableHostileMobCatcherVersion;
 
-    public static final Item MOB_CATCHER = new ItemMobCatcher((new Item.Settings()).group(ItemGroup.MISC));
-    public static final Item MOB_CATCHER_HOSTILE = new ItemMobCatcherHostile((new Item.Settings()).group(ItemGroup.MISC));
+    public static final Item MOB_CATCHER = new ItemMobCatcher((new Item.Settings()).maxCount(1).group(ItemGroup.MISC));
+    public static final Item MOB_CATCHER_HOSTILE = new ItemMobCatcherHostile((new Item.Settings()).maxCount(1).group(ItemGroup.MISC));
 
     public static void init()
     {
