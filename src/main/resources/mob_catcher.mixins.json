@@ -8,7 +8,8 @@
     "VillagerEntityMixinInteract",
     "WanderingTraderEntityMixinInteract",
     "WolfEntityMixinInteract",
-    "ParrotEntityMixinInteract"
+    "ParrotEntityMixinInteract",
+    "HorseEntityMixinInteract"
   ],
   "client": [],
   "injectors": {
