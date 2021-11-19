@@ -1,4 +1,4 @@
-package com.kwpugh.mob_catcher;
+package com.kwpugh.mob_catcher.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

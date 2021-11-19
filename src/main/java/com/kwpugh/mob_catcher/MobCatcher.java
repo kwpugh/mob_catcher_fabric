@@ -1,5 +1,6 @@
 package com.kwpugh.mob_catcher;
 
+import com.kwpugh.mob_catcher.config.ModConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;

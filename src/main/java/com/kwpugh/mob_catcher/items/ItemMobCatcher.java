@@ -1,13 +1,16 @@
-package com.kwpugh.mob_catcher;
+package com.kwpugh.mob_catcher.items;
 
 import java.util.List;
 
+import com.kwpugh.mob_catcher.util.CatcherUtil;
+import com.kwpugh.mob_catcher.MobCatcher;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,14 +24,20 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 /*
-    Version of catcher that only works on hostile  mobs
+ * This item also relies on mixins
+ * into WolfEntity, ParrotEntity, VillagerEntity, AbstractDonkeyEntity, and
+ * WanderingTraderEntity to change interactMob
+ * methods and bypass usually GUIs or actions
+ * Sync with Gobber Staff of Ensnarement if changes occur
  */
-public class ItemMobCatcherHostile extends Item
+public class ItemMobCatcher extends Item
 {
-    public ItemMobCatcherHostile(Settings settings)
+    public ItemMobCatcher(Settings settings)
     {
         super(settings);
     }
+
+    static boolean enableHostileUse = MobCatcher.CONFIG.SETTINGS.enableHostileOnPassiveCatcher;
 
     // Right-click on entity, if right type, save entity info to tag and delete entity
     @Override
@@ -36,7 +45,24 @@ public class ItemMobCatcherHostile extends Item
     {
         if(!player.world.isClient)
         {
-            if(stack.getOrCreateNbt().isEmpty() && (entity instanceof HostileEntity && !(entity instanceof WitherEntity)))
+            if((enableHostileUse) && (stack.getOrCreateNbt().isEmpty()) &&
+                    (entity instanceof HostileEntity) && !(entity instanceof WitherEntity))
+            {
+                if(CatcherUtil.saveEntityToStack(entity, stack))
+                {
+                    player.setStackInHand(hand, stack);
+                }
+
+                return ActionResult.SUCCESS;
+            }
+
+            if((stack.getOrCreateNbt().isEmpty()) &&
+                    (entity instanceof AnimalEntity ||
+                            entity instanceof GolemEntity ||
+                            entity instanceof SquidEntity ||
+                            entity instanceof FishEntity ||
+                            entity instanceof VillagerEntity) ||
+                    entity instanceof WanderingTraderEntity)
             {
                 if(CatcherUtil.saveEntityToStack(entity, stack))
                 {
@@ -76,7 +102,7 @@ public class ItemMobCatcherHostile extends Item
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext tooltipContext)
     {
-        tooltip.add(new TranslatableText("item.mob_catcher.mob_catcher_hostile.tip1").formatted(Formatting.GREEN));
+        tooltip.add(new TranslatableText("item.mob_catcher.mob_catcher.tip1").formatted(Formatting.GREEN));
 
         if (stack.hasNbt() && !stack.getOrCreateSubNbt("captured_entity").isEmpty())
         {

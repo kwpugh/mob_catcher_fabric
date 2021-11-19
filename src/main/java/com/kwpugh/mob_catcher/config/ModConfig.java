@@ -1,4 +1,4 @@
-package com.kwpugh.mob_catcher;
+package com.kwpugh.mob_catcher.config;
 
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;

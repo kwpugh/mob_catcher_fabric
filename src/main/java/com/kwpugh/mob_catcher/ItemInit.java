@@ -1,5 +1,7 @@
 package com.kwpugh.mob_catcher;
 
+import com.kwpugh.mob_catcher.items.ItemMobCatcher;
+import com.kwpugh.mob_catcher.items.ItemMobCatcherHostile;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
