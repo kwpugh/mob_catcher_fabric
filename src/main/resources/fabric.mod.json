@@ -13,7 +13,7 @@
     "sources": "https://github.com/kwpugh/mob_catcher_catcher_fabric-1.17/issues"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/mob_catcher/textures/item/mob_catcher.png",
 
   "environment": "*",
@@ -27,7 +27,7 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.12.5",
+    "fabricloader": ">=0.12.6",
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
