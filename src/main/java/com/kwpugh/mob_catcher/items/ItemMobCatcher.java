@@ -58,6 +58,7 @@ public class ItemMobCatcher extends Item
 
             if((stack.getOrCreateNbt().isEmpty()) &&
                     (entity instanceof AnimalEntity ||
+                            entity instanceof TameableEntity ||
                             entity instanceof GolemEntity ||
                             entity instanceof SquidEntity ||
                             entity instanceof FishEntity ||
