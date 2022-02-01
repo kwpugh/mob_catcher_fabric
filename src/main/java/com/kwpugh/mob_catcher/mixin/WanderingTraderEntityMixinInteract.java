@@ -1,6 +1,6 @@
 package com.kwpugh.mob_catcher.mixin;
 
-import com.kwpugh.mob_catcher.ItemInit;
+import com.kwpugh.mob_catcher.init.ItemInit;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

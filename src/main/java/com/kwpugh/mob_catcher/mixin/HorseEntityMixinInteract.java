@@ -1,6 +1,6 @@
 package com.kwpugh.mob_catcher.mixin;
 
-import com.kwpugh.mob_catcher.ItemInit;
+import com.kwpugh.mob_catcher.init.ItemInit;
 
 import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;

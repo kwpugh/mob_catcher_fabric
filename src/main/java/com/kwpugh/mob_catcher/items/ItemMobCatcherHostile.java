@@ -1,11 +1,12 @@
 package com.kwpugh.mob_catcher.items;
 
-import java.util.List;
-
+import com.kwpugh.mob_catcher.MobCatcher;
+import com.kwpugh.mob_catcher.init.TagInit;
 import com.kwpugh.mob_catcher.util.CatcherUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
@@ -21,6 +22,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 /*
     Version of catcher that only works on hostile  mobs
  */
@@ -31,20 +34,42 @@ public class ItemMobCatcherHostile extends Item
         super(settings);
     }
 
+    boolean useDatapack = MobCatcher.CONFIG.SETTINGS.enableDatapackMobTypes;
+
     // Right-click on entity, if right type, save entity info to tag and delete entity
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand)
     {
         if(!player.world.isClient)
         {
-            if(stack.getOrCreateNbt().isEmpty() && (entity instanceof HostileEntity && !(entity instanceof WitherEntity)))
+            if(useDatapack)
             {
-                if(CatcherUtil.saveEntityToStack(entity, stack))
-                {
-                    player.setStackInHand(hand, stack);
-                }
+                // Datapack tag-based checking
+                EntityType<?> entityType = entity.getType();
+                boolean inHostileTag = TagInit.MOBS_HOSTILE.contains(entityType);
 
-                return ActionResult.SUCCESS;
+                if(stack.getOrCreateNbt().isEmpty() && inHostileTag)
+                {
+                    if(CatcherUtil.saveEntityToStack(entity, stack))
+                    {
+                        player.setStackInHand(hand, stack);
+                    }
+
+                    return ActionResult.SUCCESS;
+                }
+            }
+            else
+            {
+                // Traditional hard-coded logic
+                if(stack.getOrCreateNbt().isEmpty() && (entity instanceof HostileEntity && !(entity instanceof WitherEntity)))
+                {
+                    if(CatcherUtil.saveEntityToStack(entity, stack))
+                    {
+                        player.setStackInHand(hand, stack);
+                    }
+
+                    return ActionResult.SUCCESS;
+                }
             }
         }
 

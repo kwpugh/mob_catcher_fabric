@@ -1,15 +1,13 @@
 package com.kwpugh.mob_catcher.items;
 
-import java.util.List;
-
-import com.kwpugh.mob_catcher.util.CatcherUtil;
 import com.kwpugh.mob_catcher.MobCatcher;
+import com.kwpugh.mob_catcher.init.TagInit;
+import com.kwpugh.mob_catcher.util.CatcherUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -22,6 +20,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 /*
  * This item also relies on mixins
@@ -37,7 +37,7 @@ public class ItemMobCatcher extends Item
         super(settings);
     }
 
-    static boolean enableHostileUse = MobCatcher.CONFIG.SETTINGS.enableHostileOnPassiveCatcher;
+    boolean useDatapack = MobCatcher.CONFIG.SETTINGS.enableDatapackMobTypes;
 
     // Right-click on entity, if right type, save entity info to tag and delete entity
     @Override
@@ -45,32 +45,41 @@ public class ItemMobCatcher extends Item
     {
         if(!player.world.isClient)
         {
-            if((enableHostileUse) && (stack.getOrCreateNbt().isEmpty()) &&
-                    (entity instanceof HostileEntity) && !(entity instanceof WitherEntity))
+            if(useDatapack)
             {
-                if(CatcherUtil.saveEntityToStack(entity, stack))
-                {
-                    player.setStackInHand(hand, stack);
-                }
+                // Datapack tag-based checking
+                EntityType<?> entityType = entity.getType();
+                boolean inPassiveTag = TagInit.MOBS_PASSIVE.contains(entityType);
 
-                return ActionResult.SUCCESS;
+                if(stack.getOrCreateNbt().isEmpty() && inPassiveTag)
+                {
+                    if(CatcherUtil.saveEntityToStack(entity, stack))
+                    {
+                        player.setStackInHand(hand, stack);
+                    }
+
+                    return ActionResult.SUCCESS;
+                }
             }
-
-            if((stack.getOrCreateNbt().isEmpty()) &&
-                    (entity instanceof AnimalEntity ||
-                            entity instanceof TameableEntity ||
-                            entity instanceof GolemEntity ||
-                            entity instanceof SquidEntity ||
-                            entity instanceof FishEntity ||
-                            entity instanceof VillagerEntity) ||
-                    entity instanceof WanderingTraderEntity)
+            else
             {
-                if(CatcherUtil.saveEntityToStack(entity, stack))
+                // Traditional hard-coded logic
+                if((stack.getOrCreateNbt().isEmpty()) &&
+                        (entity instanceof AnimalEntity ||
+                                entity instanceof TameableEntity ||
+                                entity instanceof GolemEntity ||
+                                entity instanceof SquidEntity ||
+                                entity instanceof FishEntity ||
+                                entity instanceof VillagerEntity) ||
+                        entity instanceof WanderingTraderEntity)
                 {
-                    player.setStackInHand(hand, stack);
-                }
+                    if(CatcherUtil.saveEntityToStack(entity, stack))
+                    {
+                        player.setStackInHand(hand, stack);
+                    }
 
-                return ActionResult.SUCCESS;
+                    return ActionResult.SUCCESS;
+                }
             }
         }
 
