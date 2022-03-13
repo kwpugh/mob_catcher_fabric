@@ -46,7 +46,7 @@ public class ItemMobCatcherHostile extends Item
             {
                 // Datapack tag-based checking
                 EntityType<?> entityType = entity.getType();
-                boolean inHostileTag = TagInit.MOBS_HOSTILE.contains(entityType);
+                boolean inHostileTag = entityType.isIn(TagInit.MOBS_HOSTILE);
 
                 if(stack.getOrCreateNbt().isEmpty() && inHostileTag)
                 {

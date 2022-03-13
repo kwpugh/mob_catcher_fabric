@@ -49,7 +49,7 @@ public class ItemMobCatcher extends Item
             {
                 // Datapack tag-based checking
                 EntityType<?> entityType = entity.getType();
-                boolean inPassiveTag = TagInit.MOBS_PASSIVE.contains(entityType);
+                boolean inPassiveTag = entityType.isIn(TagInit.MOBS_PASSIVE);
 
                 if(stack.getOrCreateNbt().isEmpty() && inPassiveTag)
                 {
