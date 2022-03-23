@@ -40,9 +40,9 @@ dependencies {
 	}
 
 	//REI
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.roughlyenoughitems}"
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.roughlyenoughitems}"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.roughlyenoughitems}"
+//	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.roughlyenoughitems}"
+//	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.roughlyenoughitems}"
+//	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.roughlyenoughitems}"
 }
 
 processResources {
