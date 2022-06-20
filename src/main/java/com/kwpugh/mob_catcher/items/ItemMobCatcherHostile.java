@@ -16,7 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -102,11 +101,11 @@ public class ItemMobCatcherHostile extends Item
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext tooltipContext)
     {
-        tooltip.add(new TranslatableText("item.mob_catcher.mob_catcher_hostile.tip1").formatted(Formatting.GREEN));
+        tooltip.add(Text.translatable("item.mob_catcher.mob_catcher_hostile.tip1").formatted(Formatting.GREEN));
 
         if (stack.hasNbt() && !stack.getOrCreateSubNbt("captured_entity").isEmpty())
         {
-            tooltip.add((new TranslatableText("item.mob_catcher.mob_catcher.tip3", stack.getNbt().getString("name")).formatted(Formatting.YELLOW)));
+            tooltip.add((Text.translatable("item.mob_catcher.mob_catcher.tip3", stack.getNbt().getString("name")).formatted(Formatting.YELLOW)));
         }
     }
 }

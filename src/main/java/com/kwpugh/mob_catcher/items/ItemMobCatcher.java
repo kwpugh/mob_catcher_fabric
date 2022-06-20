@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -70,8 +69,9 @@ public class ItemMobCatcher extends Item
                                 entity instanceof GolemEntity ||
                                 entity instanceof SquidEntity ||
                                 entity instanceof FishEntity ||
-                                entity instanceof VillagerEntity) ||
-                        entity instanceof WanderingTraderEntity)
+                                entity instanceof VillagerEntity ||
+                                entity instanceof AllayEntity ||
+                        entity instanceof WanderingTraderEntity))
                 {
                     if(CatcherUtil.saveEntityToStack(entity, stack))
                     {
@@ -112,11 +112,11 @@ public class ItemMobCatcher extends Item
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext tooltipContext)
     {
-        tooltip.add(new TranslatableText("item.mob_catcher.mob_catcher.tip1").formatted(Formatting.GREEN));
+        tooltip.add(Text.translatable("item.mob_catcher.mob_catcher.tip1").formatted(Formatting.GREEN));
 
         if (stack.hasNbt() && !stack.getOrCreateSubNbt("captured_entity").isEmpty())
         {
-            tooltip.add((new TranslatableText("item.mob_catcher.mob_catcher.tip3", stack.getNbt().getString("name")).formatted(Formatting.YELLOW)));
+            tooltip.add((Text.translatable("item.mob_catcher.mob_catcher.tip3", stack.getNbt().getString("name")).formatted(Formatting.YELLOW)));
         }
     }
 }

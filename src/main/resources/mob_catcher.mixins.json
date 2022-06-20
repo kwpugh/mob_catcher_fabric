@@ -5,11 +5,12 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "AbstractDonkeyEntityMixinInteract",
+    "AllayEntityMixinInteract",
+    "HorseEntityMixinInteract",
+    "ParrotEntityMixinInteract",
     "VillagerEntityMixinInteract",
     "WanderingTraderEntityMixinInteract",
-    "WolfEntityMixinInteract",
-    "ParrotEntityMixinInteract",
-    "HorseEntityMixinInteract"
+    "WolfEntityMixinInteract"
   ],
   "client": [],
   "injectors": {
