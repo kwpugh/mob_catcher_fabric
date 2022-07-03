@@ -70,6 +70,7 @@ public class ItemMobCatcher extends Item
                                 entity instanceof GolemEntity ||
                                 entity instanceof SquidEntity ||
                                 entity instanceof FishEntity ||
+                                entity instanceof DolphinEntity ||
                                 entity instanceof VillagerEntity) ||
                         entity instanceof WanderingTraderEntity)
                 {
