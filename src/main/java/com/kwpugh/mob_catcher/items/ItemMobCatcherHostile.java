@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -60,7 +61,8 @@ public class ItemMobCatcherHostile extends Item
             else
             {
                 // Traditional hard-coded logic
-                if(stack.getOrCreateNbt().isEmpty() && (entity instanceof HostileEntity && !(entity instanceof WitherEntity)))
+                if((stack.getOrCreateNbt().isEmpty() && !(entity instanceof WitherEntity)) &&
+                ((entity instanceof HostileEntity) || entity instanceof SlimeEntity))
                 {
                     if(CatcherUtil.saveEntityToStack(entity, stack))
                     {
