@@ -72,7 +72,7 @@ public class ItemMobCatcher extends Item
                                 entity instanceof DolphinEntity ||
                                 entity instanceof VillagerEntity ||
                                 entity instanceof AllayEntity ||
-                        entity instanceof WanderingTraderEntity))
+                                entity instanceof WanderingTraderEntity))
                 {
                     if(CatcherUtil.saveEntityToStack(entity, stack))
                     {
