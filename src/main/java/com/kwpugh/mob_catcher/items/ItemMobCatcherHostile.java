@@ -48,7 +48,7 @@ public class ItemMobCatcherHostile extends Item
                 EntityType<?> entityType = entity.getType();
                 boolean inHostileTag = entityType.isIn(TagInit.MOBS_HOSTILE);
 
-                if(stack.getOrCreateNbt().isEmpty() && inHostileTag)
+                if(stack.getOrCreateSubNbt("captured_entity").isEmpty() && inHostileTag)
                 {
                     if(CatcherUtil.saveEntityToStack(entity, stack))
                     {
@@ -61,7 +61,7 @@ public class ItemMobCatcherHostile extends Item
             else
             {
                 // Traditional hard-coded logic
-                if((stack.getOrCreateNbt().isEmpty() && !(entity instanceof WitherEntity)) &&
+                if((stack.getOrCreateSubNbt("captured_entity").isEmpty() && !(entity instanceof WitherEntity)) &&
                 ((entity instanceof HostileEntity) || entity instanceof SlimeEntity))
                 {
                     if(CatcherUtil.saveEntityToStack(entity, stack))

@@ -50,7 +50,7 @@ public class ItemMobCatcher extends Item
                 EntityType<?> entityType = entity.getType();
                 boolean inPassiveTag = entityType.isIn(TagInit.MOBS_PASSIVE);
 
-                if(stack.getOrCreateNbt().isEmpty() && inPassiveTag)
+                if(stack.getOrCreateSubNbt("captured_entity").isEmpty() && inPassiveTag)
                 {
                     if(CatcherUtil.saveEntityToStack(entity, stack))
                     {
@@ -63,7 +63,7 @@ public class ItemMobCatcher extends Item
             else
             {
                 // Traditional hard-coded logic
-                if((stack.getOrCreateNbt().isEmpty()) &&
+                if((stack.getOrCreateSubNbt("captured_entity").isEmpty()) &&
                         (entity instanceof AnimalEntity ||
                                 entity instanceof TameableEntity ||
                                 entity instanceof GolemEntity ||
