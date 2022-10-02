@@ -65,15 +65,13 @@ public class ItemMobCatcher extends Item
                 // Traditional hard-coded logic
                 if((stack.getOrCreateSubNbt("captured_entity").isEmpty()) &&
                         (entity instanceof AnimalEntity ||
-                                entity instanceof TameableEntity ||
+                                entity instanceof MerchantEntity ||
                                 entity instanceof GolemEntity ||
                                 entity instanceof SquidEntity ||
                                 entity instanceof FishEntity ||
                                 entity instanceof DolphinEntity ||
-                                entity instanceof VillagerEntity ||
                                 entity instanceof AllayEntity ||
-                                entity instanceof BatEntity ||
-                                entity instanceof WanderingTraderEntity))
+                                entity instanceof BatEntity))
                 {
                     if(CatcherUtil.saveEntityToStack(entity, stack))
                     {
