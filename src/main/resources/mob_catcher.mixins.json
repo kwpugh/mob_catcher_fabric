@@ -4,13 +4,7 @@
   "package": "com.kwpugh.mob_catcher.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "AbstractDonkeyEntityMixinInteract",
-    "AllayEntityMixinInteract",
-    "HorseEntityMixinInteract",
-    "ParrotEntityMixinInteract",
-    "VillagerEntityMixinInteract",
-    "WanderingTraderEntityMixinInteract",
-    "WolfEntityMixinInteract"
+
   ],
   "client": [],
   "injectors": {

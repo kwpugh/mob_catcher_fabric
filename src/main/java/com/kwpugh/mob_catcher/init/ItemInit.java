@@ -15,7 +15,7 @@ public class ItemInit
     public static final Item MOB_CATCHER = new ItemMobCatcher((new Item.Settings()).maxCount(1).group(ItemGroup.MISC));
     public static final Item MOB_CATCHER_HOSTILE = new ItemMobCatcherHostile((new Item.Settings()).maxCount(1).group(ItemGroup.MISC));
 
-    public static void init()
+    public static void register()
     {
         Registry.register(Registry.ITEM, new Identifier(MobCatcher.MOD_ID, "mob_catcher"), MOB_CATCHER);
 
