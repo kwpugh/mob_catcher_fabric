@@ -16,7 +16,6 @@ public class ModConfig extends PartitioningSerializer.GlobalData
         @Comment("***********************"
                 +"\nSettings"
                 +"\n***********************")
-        public boolean enableHostileMobCatcherVersion = true;
         public boolean enableDatapackMobTypes = false;
     }
 }

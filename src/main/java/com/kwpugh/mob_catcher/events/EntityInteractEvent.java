@@ -26,7 +26,7 @@ public class EntityInteractEvent
 
         if(stack.getItem() == ItemInit.MOB_CATCHER_HOSTILE)
         {
-            CatcherUtil.catchHostilMob(player, entity, stack, hand);
+            CatcherUtil.catchHostileMob(player, entity, stack, hand);
             player.swingHand(hand);
 
             return ActionResult.SUCCESS;

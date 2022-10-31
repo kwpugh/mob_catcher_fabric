@@ -4,11 +4,11 @@ import com.kwpugh.mob_catcher.config.ModConfig;
 import com.kwpugh.mob_catcher.events.EntityInteractEvent;
 import com.kwpugh.mob_catcher.init.ItemInit;
 import com.kwpugh.mob_catcher.init.TagInit;
+import com.kwpugh.mob_catcher.util.MobCatcherGroup;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 
 public class MobCatcher implements ModInitializer
@@ -21,6 +21,7 @@ public class MobCatcher implements ModInitializer
     {
         TagInit.register();
         ItemInit.register();
+        MobCatcherGroup.addGroup();
         UseEntityCallback.EVENT.register(EntityInteractEvent::onUseEntity);
     }
 }

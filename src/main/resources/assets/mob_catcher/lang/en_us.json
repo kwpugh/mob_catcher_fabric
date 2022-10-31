@@ -7,5 +7,5 @@
 	"item.mob_catcher.mob_catcher_hostile": "Hostile Mob Catcher",
 	"item.mob_catcher.mob_catcher_hostile.tip1": "Captures and stores hostile mobs",
 
-	"itemGroup.mob_catcher": "Mob Catcher"
+	"itemGroup.mob_catcher_group": "Mob Catcher"
 }

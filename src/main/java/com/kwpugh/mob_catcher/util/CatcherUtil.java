@@ -72,7 +72,7 @@ public class CatcherUtil
         return ActionResult.SUCCESS;
     }
 
-    public static ActionResult catchHostilMob(PlayerEntity player, Entity entity, ItemStack stack, Hand hand)
+    public static ActionResult catchHostileMob(PlayerEntity player, Entity entity, ItemStack stack, Hand hand)
     {
         if(useDatapack)
         {
@@ -96,8 +96,8 @@ public class CatcherUtil
             if((stack.getOrCreateSubNbt("captured_entity").isEmpty() && !(entity instanceof WitherEntity)) &&
                     ((entity instanceof HostileEntity) ||
                             entity instanceof SlimeEntity) ||
-                    entity instanceof GhastEntity ||
-                    entity instanceof PhantomEntity)
+                            entity instanceof GhastEntity ||
+                            entity instanceof PhantomEntity)
             {
                 if(saveEntityToStack(entity, stack))
                 {
