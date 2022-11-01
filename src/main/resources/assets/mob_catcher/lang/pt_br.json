@@ -1,0 +1,11 @@
+{
+	"item.mob_catcher.mob_catcher": "Apanhador de Mob",
+	"item.mob_catcher.mob_catcher.tip1": "Captura e armazena animais passivos e aldeões",
+	"item.mob_catcher.mob_catcher.tip2": "Atualmente vazio",
+	"item.mob_catcher.mob_catcher.tip3": "Conteúdo: %s",
+
+	"item.mob_catcher.mob_catcher_hostile": "Apanhador de Mob hostil",
+	"item.mob_catcher.mob_catcher_hostile.tip1": "Captura e armazena mobs hostis",
+
+	"itemGroup.mob_catcher": "Apanhador de Mob"
+}
