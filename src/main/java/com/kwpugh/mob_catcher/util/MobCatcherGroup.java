@@ -5,7 +5,6 @@ import com.kwpugh.mob_catcher.init.ItemInit;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.util.Identifier;
 
 public class MobCatcherGroup
@@ -15,19 +14,11 @@ public class MobCatcherGroup
         // force class run when we want
     }
 
-    public static final ItemGroup MOB_CATCHER_GROUP = new FabricItemGroup(new Identifier(MobCatcher.MOD_ID, "mob_catcher_group"))
-    {
-        @Override
-        public ItemStack createIcon()
-        {
-            return new ItemStack(ItemInit.MOB_CATCHER);
-        }
-
-        @Override
-        protected void addItems(FeatureSet enabledFeatures, Entries entries)
-        {
-            entries.add(ItemInit.MOB_CATCHER);
-            entries.add(ItemInit.MOB_CATCHER_HOSTILE);
-        }
-    };
+    private static final ItemGroup MOB_CATCHER_GROUP = FabricItemGroup.builder(new Identifier(MobCatcher.MOD_ID, "mob_catcher_group"))
+            .icon(() -> new ItemStack(ItemInit.MOB_CATCHER))
+            .entries((enabledFeatures, entries, operatorEnabled) -> {
+                entries.add(ItemInit.MOB_CATCHER);
+                entries.add(ItemInit.MOB_CATCHER_HOSTILE);
+            })
+            .build();
 }

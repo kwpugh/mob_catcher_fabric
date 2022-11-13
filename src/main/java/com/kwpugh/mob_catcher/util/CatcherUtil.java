@@ -5,10 +5,7 @@ import com.kwpugh.mob_catcher.init.TagInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.mob.GhastEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.PhantomEntity;
-import net.minecraft.entity.mob.SlimeEntity;
+import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -51,6 +48,7 @@ public class CatcherUtil
                 // Traditional hard-coded logic
                 if((stack.getOrCreateSubNbt("captured_entity").isEmpty()) &&
                         (entity instanceof AnimalEntity ||
+                                entity instanceof PathAwareEntity ||
                                 entity instanceof MerchantEntity ||
                                 entity instanceof GolemEntity ||
                                 entity instanceof SquidEntity ||

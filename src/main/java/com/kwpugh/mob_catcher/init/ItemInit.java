@@ -5,6 +5,7 @@ import com.kwpugh.mob_catcher.items.ItemMobCatcher;
 import com.kwpugh.mob_catcher.items.ItemMobCatcherHostile;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registries;
 import net.minecraft.util.registry.Registry;
 
 public class ItemInit
@@ -14,7 +15,7 @@ public class ItemInit
 
     public static void register()
     {
-        Registry.register(Registry.ITEM, new Identifier(MobCatcher.MOD_ID, "mob_catcher"), MOB_CATCHER);
-        Registry.register(Registry.ITEM, new Identifier(MobCatcher.MOD_ID, "mob_catcher_hostile"), MOB_CATCHER_HOSTILE);
+        Registry.register(Registries.ITEM, new Identifier(MobCatcher.MOD_ID, "mob_catcher"), MOB_CATCHER);
+        Registry.register(Registries.ITEM, new Identifier(MobCatcher.MOD_ID, "mob_catcher_hostile"), MOB_CATCHER_HOSTILE);
     }
 }
