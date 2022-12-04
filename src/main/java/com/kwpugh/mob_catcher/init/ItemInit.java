@@ -5,8 +5,8 @@ import com.kwpugh.mob_catcher.items.ItemMobCatcher;
 import com.kwpugh.mob_catcher.items.ItemMobCatcherHostile;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registries;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public class ItemInit
 {
