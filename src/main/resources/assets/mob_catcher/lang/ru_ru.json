@@ -1,0 +1,11 @@
+{
+	"item.mob_catcher.mob_catcher": "Ловец Мобов",
+	"item.mob_catcher.mob_catcher.tip1": "Ловит и хранит мирных мобов и жителей",
+	"item.mob_catcher.mob_catcher.tip2": "В данный момент пустой",
+	"item.mob_catcher.mob_catcher.tip3": "Содержит: %s",
+
+	"item.mob_catcher.mob_catcher_hostile": "Ловец Враждебных мобов",
+	"item.mob_catcher.mob_catcher_hostile.tip1": "Ловит и хранит враждебных мобов",
+
+	"itemGroup.mob_catcher": "Mob Catcher"
+}
