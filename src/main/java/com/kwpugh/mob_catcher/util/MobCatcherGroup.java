@@ -7,16 +7,14 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
-public class MobCatcherGroup
-{
-    public static void addGroup()
-    {
+public class MobCatcherGroup {
+    public static void addGroup() {
         // force class run when we want
     }
 
     private static final ItemGroup MOB_CATCHER_GROUP = FabricItemGroup.builder(new Identifier(MobCatcher.MOD_ID, "mob_catcher_group"))
             .icon(() -> new ItemStack(ItemInit.MOB_CATCHER))
-            .entries((enabledFeatures, entries, operatorEnabled) -> {
+            .entries((enabledFeatures, entries) -> {
                 entries.add(ItemInit.MOB_CATCHER);
                 entries.add(ItemInit.MOB_CATCHER_HOSTILE);
             })

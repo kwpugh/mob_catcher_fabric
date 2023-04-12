@@ -6,16 +6,15 @@ import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
 @Config(name = "mob_catcher")
-public class ModConfig extends PartitioningSerializer.GlobalData
-{
+public class ModConfig extends PartitioningSerializer.GlobalData {
     public Settings SETTINGS = new Settings();
 
     @Config(name = "general")
-    public static class Settings implements ConfigData
-    {
-        @Comment("***********************"
-                +"\nSettings"
-                +"\n***********************")
-        public boolean enableDatapackMobTypes = false;
+    public static class Settings implements ConfigData {
+        @Comment("""
+                ***********************
+                Settings
+                ***********************""")
+        public boolean enableDataPackMobTypes = false;
     }
 }
