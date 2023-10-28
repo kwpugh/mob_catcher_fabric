@@ -25,7 +25,7 @@ public class CatcherUtil
 
     public static ActionResult catchPassiveMob(PlayerEntity player, Entity entity, ItemStack stack, Hand hand)
     {
-        if(!player.world.isClient)
+        if(!player.getWorld().isClient)
         {
             if(useDatapack)
             {
